@@ -1,101 +1,143 @@
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Navbar  from '../components/global/navbar';
+import { Check } from 'lucide-react';
+
+
+import { LampContainer } from "../components/ui/lamp";
+import { Button } from "../components/ui/button";
+import { TypewriterEffect } from "../components/ui/typewriter-effect";
+import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+//Obvious template, never really worked with these
+const WorkedWith = [
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png" }, // Google
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bing_logo_%282016%29.svg/1200px-Bing_logo_%282016%29.svg.png" }, // Bing
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" }, // Amazon
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1024px-Apple_logo_black.svg.png" }, // Apple
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1024px-Facebook_f_logo_%282019%29.svg.png" }, // Facebook
+  { Company: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/640px-Samsung_Logo.svg.png" }, // Samsung
+];
 
 export default function Home() {
+  const words = [{text: "Transform"},{text: "Your"},{text: "Support"},{text: "with"},{text: "Vero.",className: "text-primary dark:text-primary",},];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main>
+      <Navbar />
+      <section className="h-screen w-full flex items-center justify-center bg-background text-center">
+        <div className='p-8 flex flex-col items-center'>
+          <span className='border border-primary text-primary rounded-3xl py-1 px-4'>Chat Support</span>
+          <TypewriterEffect words={words} className='mt-5'/>
+          <p className="text-muted-foreground text-lg mt-5">
+            Enhance efficiency, monitor performance, and drive revenue growth with our powerful Chatbot solution.
+          </p>
+          <div className="card-wrapper w-3/4 h-96 mt-6">
+            <div className="card-content">
+              <img className='rounded-2xl w-full h-full object-cover' src="https://cdn.dribbble.com/userupload/15896168/file/original-40568ecba17e7efa21905c83e401d29c.png?resize=1024x768" />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className='absolute bottom-0 left-0 w-full h-1/2 z-10 bg-gradient-to-t from-background to-transparent via-background'></div>
+      </section>
+      <section className="flex justify-center">
+        <InfiniteMovingCards
+          items={WorkedWith}
+          direction="right"
+          speed="normal"
+        />
+      </section>
+      <section className="flex justify-center mt-5">
+        <div className="flex flex-col items-center justify-center max-w-1/2 w-1/2 p-2">
+          <LampContainer>
+            <h1 className="text-4xl text-white font-bold font-sans mb-5">
+              Plans Just Fit For You
+            </h1>
+            <div className="flex">
+            <Card className="max-w-1/3 mx-2">
+              <CardHeader>
+                <CardTitle className="font-bold text-2xl">Start Up</CardTitle>
+                <CardDescription className="font-bold text-white text-5xl">$10</CardDescription>
+                <CardDescription>
+                  Perfect for small teams or individuals looking to explore our chatbot solution and improve customer interaction.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>25 Active Chats</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>500 AI Messages</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>2 Team Members</p>
+                </div>
+                <Button className="w-full mt-4">Get Started</Button>
+              </CardContent>
+            </Card>
+
+            <Card className="max-w-1/3 mx-2">
+              <CardHeader>
+                <CardTitle className="font-bold text-2xl">Business Ready</CardTitle>
+                <CardDescription className="font-bold text-white text-5xl">$50</CardDescription>
+                <CardDescription>
+                  Designed for growing businesses looking to scale their support with advanced AI-driven interactions and more flexibility.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>100 Active Chats</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>5,000 AI Messages</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>10 Team Members</p>
+                </div>
+                <Button className="w-full mt-4">Get Started</Button>
+              </CardContent>
+            </Card>
+
+            <Card className="max-w-1/3 mx-2">
+              <CardHeader>
+                <CardTitle className="font-bold text-2xl">Enterprise</CardTitle>
+                <CardDescription className="font-bold text-white text-5xl">$200</CardDescription>
+                <CardDescription>
+                  Tailored for large-scale enterprises requiring unlimited access, high-performance AI, and dedicated support.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>Unlimited Active Chats</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>Unlimited AI Messages</p>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Check className="mr-2" />
+                  <p>Unlimited Team Members</p>
+                </div>
+                <Button className="w-full mt-4">Get Started</Button>
+              </CardContent>
+            </Card>
+          </div>
+          </LampContainer>
+        </div>
+      </section>
+    </main>
   );
 }
