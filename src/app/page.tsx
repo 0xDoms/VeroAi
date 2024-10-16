@@ -5,12 +5,18 @@ import Navbar  from '../components/global/navbar';
 
 import { Button } from "../components/ui/button";
 import { TypewriterEffect } from "../components/ui/typewriter-effect";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Home() {
+export default async function Home() {
   const words = [{text: "Transform"},{text: "Your"},{text: "Support"},{text: "with"},{text: "Vero.",className: "text-primary dark:text-primary",},];
+
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  const user = await getUser();
+  console.log(user)
+
   return (
     <main>
-      <Navbar />
+      <Navbar user={user} />
       <section className="h-screen w-full flex items-center justify-center bg-background text-center">
         <div className='p-8 flex flex-col items-center'>
           <span className='border border-primary text-primary rounded-3xl py-1 px-4'>Chat Support</span>
