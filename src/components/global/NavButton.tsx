@@ -16,9 +16,12 @@ const NavButton: FC<NavButtonProps> = ({ to, icon: Icon, label }) => {
     const isActive = pathname === to;
 
     return (
-        <Link href={to} className={`flex items-center ${isActive ? 'bg-accent' : 'bg-background'} hover:bg-accent transition-colors rounded-md py-2 px-4`}>
-            <Icon className={`mr-3 ${isActive ? 'text-orange-500' : ''}`}/>
-            <span className="line">{label}</span> 
+        <Link 
+            href={to} 
+            className={`flex items-center ${isActive ? 'bg-accent text-text font-bold' : 'bg-background text-gray-500'} hover:bg-accent transition-colors rounded-md py-2 px-4`}
+        >
+            <Icon className={`mr-3`} />
+            <span className="hidden lg:block">{label}</span> {/* Text hidden on small screens */}
         </Link>
     );
 };
