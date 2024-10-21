@@ -26,7 +26,7 @@ export default async function Home() {
           </p>
           <div className="card-wrapper w-3/4 h-96 mt-6">
             <div className="card-content">
-              <img className='rounded-2xl w-full h-full object-cover' src="https://cdn.dribbble.com/userupload/15896168/file/original-40568ecba17e7efa21905c83e401d29c.png?resize=1024x768" />
+              <img className='rounded-2xl w-full h-full object-cover' src="https://cdn.discordapp.com/attachments/1122110177336889384/1297933452854693958/dashboard.png?ex=6717ba39&is=671668b9&hm=a50c611d93bd5b2b581d7dad60f7316fa67e7ffdb20be7c36b012de23d4de1f5&" />
             </div>
           </div>
         </div>
