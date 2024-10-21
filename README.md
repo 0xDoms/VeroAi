@@ -30,7 +30,7 @@ Welcome to **VeroAi**! An innovative AI sales chat solution designed to empower 
 | ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square) | For beautiful and responsive design                          | [Tailwind CSS Docs](https://tailwindcss.com/)        |
 | ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white&style=flat-square)   | Enhancing code quality and maintainability with TypeScript  | [TypeScript Official](https://www.typescriptlang.org/) |
 | ![Pusher](https://img.shields.io/badge/-Pusher-EE4B29?logo=pusher&logoColor=white&style=flat-square)                | For real-time communication capabilities                     | [Pusher Official](https://pusher.com/)               |
-| ![Shadcn UI](https://img.shields.io/badge/-Shadcn%20UI-4A5568?logo=shadcn&logoColor=white&style=flat-square)       | A component library for modern user interfaces              | [Shadcn UI Docs](https://shadcn.dev/)                |
+| ![Shadcn UI](https://img.shields.io/badge/-Shadcn%20UI-4A5568?logo=shadcn&logoColor=white&style=flat-square)       | A component library for modern user interfaces              | [Shadcn UI Docs](https://ui.shadcn.com/)                |
 
 
 ---
