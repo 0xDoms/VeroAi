@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black; 
+            margin: 0;
+            overflow: hidden; 
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const iframe = document.createElement('iframe')
+        iframe.src = 'http://localhost:3000/embed'
+
+        iframe.style.position = 'fixed';
+        iframe.style.bottom = '0';
+        iframe.style.right = '0';
+        iframe.style.width = '500px'; 
+        iframe.style.height = '600px'; 
+        iframe.style.border = 'none'; 
+        iframe.style.background = 'red';
+
+        document.body.appendChild(iframe)
+    </script>
+</body>
+</html>
