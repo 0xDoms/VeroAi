@@ -12,7 +12,7 @@ import { toPusherKey } from "@/lib/utils";
 type Props = {}
 
 const Chatroom = (props: Props) => {
-    const [selectedSessionId, setSelectedSessionId] = useState<string | null>("c63ad372-32b3-4878-a43b-5c4791532c15");
+    const [selectedSessionId, setSelectedSessionId] = useState<string | null>("dfe9b836-07ff-42a9-81af-e49bc7001e2b");
     const [messages, setMessages] = useState<Message[]>([]);
     const [newMessage, setNewMessage] = useState<string>('');
     const [isChatOpen, setIsChatOpen] = useState(true);
@@ -21,8 +21,23 @@ const Chatroom = (props: Props) => {
         setIsChatOpen(!isChatOpen);
     };
 
-    const handleSendMessage = () => {
-        console.log("Sending message!")
+    const handleSendMessage = async () => {
+        if (!newMessage.trim()) return;
+
+        try {
+            const response = await fetch('/api/chat/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sessionId: selectedSessionId,
+                    message: newMessage
+                })
+            });
+        } catch (error) {
+            console.error("Error sending message:", error);
+        }
     };
 
     const fetchMessages = async (sessionId: String) => {
@@ -90,7 +105,7 @@ const Chatroom = (props: Props) => {
                         {messages.length > 0 ? (
                             messages.map((msg, index) => (
                             <div key={index} className='mb-5 flex justify-between'>
-                                <div className={`inline-block max-w-1/2 p-2 ${msg.senderId === 'user1' ? 'ml-auto bg-primary rounded-bl-md rounded-tr-md rounded-tl-md mr-2' : 'bg-accent rounded-br-md rounded-tr-md rounded-tl-md ml-2'}`}>
+                                <div className={`inline-block max-w-1/2 p-2 ${msg.senderId === 'assistant' ? 'ml-auto bg-primary rounded-bl-md rounded-tr-md rounded-tl-md mr-2' : 'bg-accent rounded-br-md rounded-tr-md rounded-tl-md ml-2'}`}>
                                 {msg.text}
                                 </div>
                             </div>

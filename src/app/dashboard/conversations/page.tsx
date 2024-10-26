@@ -12,6 +12,7 @@ export default function Conversations(){
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(null);
   const [newMessage, setNewMessage] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [liveChat, setLivechat] = useState<boolean>();
 
 
   const fetchMessages = async (sessionId: String) => {
@@ -21,6 +22,7 @@ export default function Conversations(){
 
         if (data.status === 200) {
           setMessages(data.data);
+          setLivechat(data.liveChat);
         } else {
           console.error("Error fetching messages:", data.message);
         }
@@ -29,10 +31,25 @@ export default function Conversations(){
     }
 };
 
+  const handleSendMessage = async () => {
+    if (!newMessage.trim()) return;
 
-  const handleSendMessage = () => {
-    console.log("Sending message!")
-  };
+    try {
+        const response = await fetch('/api/chat/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sessionId: selectedSessionId,
+                message: newMessage,
+                assistant: true,
+            })
+        });
+    } catch (error) {
+        console.error("Error sending message:", error);
+    }
+};
 
   useEffect(() => {
     // Fetch old messages
@@ -69,7 +86,7 @@ export default function Conversations(){
           {messages.length > 0 ? (
             messages.map((msg, index) => (
               <div key={index} className='mb-5 flex justify-between'>
-                <div className={`inline-block max-w-1/2 p-2 ${msg.senderId === 'user1' ? 'ml-auto bg-primary rounded-bl-md rounded-tr-md rounded-tl-md mr-2' : 'bg-accent rounded-br-md rounded-tr-md rounded-tl-md ml-2'}`}>
+                <div className={`inline-block max-w-1/2 p-2 ${msg.senderId === 'assistant' ? 'ml-auto bg-primary rounded-bl-md rounded-tr-md rounded-tl-md mr-2' : 'bg-accent rounded-br-md rounded-tr-md rounded-tl-md ml-2'}`}>
                   {msg.text}
                 </div>
               </div>
@@ -79,8 +96,14 @@ export default function Conversations(){
           )}
         </div>
         <div className="w-full h-1/6 p-2 border-t-2 flex">
-          <Input type="text" placeholder="Type your message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)}className="flex-grow"/>
-          <Button onClick={handleSendMessage} className="ml-2">Send</Button>
+          { liveChat ? (
+            <div>
+              <Input type="text" placeholder="Type your message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)}className="flex-grow"/>
+              <Button onClick={handleSendMessage} className="ml-2">Send</Button>
+            </div>
+          ) : (
+            <h1>Chat is not live!</h1>
+          )}
         </div>
       </div>
     </div>
